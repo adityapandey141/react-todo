@@ -64,6 +64,16 @@ ul li button{
 ul li button:hover{
     color: red;
     text-shadow: 0px 0px 5px rgb(209, 202, 202);
-    transform: rotate(180deg);
+    
     transition: all 1s;
+}
+
+.popup-content input{
+    width: 200px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.popup-content{
+    width: fit-content !important;
 }

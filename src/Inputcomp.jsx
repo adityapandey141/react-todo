@@ -1,16 +1,22 @@
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import Table from "./Table";
 const Inputcomp=()=>{
 
+     
+    const [getdata,setData] = useState(()=> JSON.parse(localStorage.getItem('todolistlocal')) || []);
+
+    const myarray =getdata;
+
+    useEffect(() => {
+        if (getdata.length > 0) localStorage.setItem('todolistlocal', JSON.stringify(getdata));
+      }, [getdata]);
 
 
-
+      
+      
     const [getinp,setInp]=useState("")
 
-     
-  const [getdata,setData] = useState([]);
 
-  const myarray =getdata;
 
   const handledata=(e)=>{
 
@@ -37,6 +43,17 @@ const Inputcomp=()=>{
 
     setData(newarray);
 }
+
+const edititem =(value , index)=>{
+   
+   console.log(value,index)
+    const newdata =[...getdata];
+    newdata[index]=value;
+
+    console.log(newdata)
+   setData([...newdata])
+}
+  
   
 
     return(
@@ -51,7 +68,7 @@ const Inputcomp=()=>{
              getdata.map((val,index) => {
                 return(
                     
-                        <Table key={index} value={val} myfun={delitem} index={index}/>
+                        <Table key={index} value={val} myfun={delitem} editfun={edititem} index={index}/>
                     
                 );
             })
